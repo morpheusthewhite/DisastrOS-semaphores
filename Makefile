@@ -1,19 +1,19 @@
 CC=gcc
-CCOPTS=--std=gnu99 -Wall 
+CCOPTS=--std=gnu99 -Wall -I include/
 AR=ar
 
-HEADERS=disastrOS.h\
-	disastrOS_constants.h\
-	disastrOS_descriptor.h\
-	disastrOS_globals.h\
-	disastrOS_pcb.h\
-	disastrOS_resource.h\
-	disastrOS_syscalls.h\
-	disastrOS_timer.h\
-	disastrOS_semaphore.h\
-	disastrOS_semdescriptor.h\
-	linked_list.h\
-	pool_allocator.h\
+HEADERS=include/disastrOS.h\
+	include/disastrOS_constants.h\
+	include/disastrOS_descriptor.h\
+	include/disastrOS_globals.h\
+	include/disastrOS_pcb.h\
+	include/disastrOS_resource.h\
+	include/disastrOS_syscalls.h\
+	include/disastrOS_timer.h\
+	include/disastrOS_semaphore.h\
+	include/disastrOS_semdescriptor.h\
+	include/linked_list.h\
+	include/pool_allocator.h\
 
 OBJS=pool_allocator.o\
      linked_list.o\
@@ -52,14 +52,14 @@ BINS=disastrOS_test
 
 all:	$(LIBS) $(BINS)
 
-%.o:	%.c $(HEADERS)
+%.o:	src/%.c $(HEADERS)
 	$(CC) $(CCOPTS) -c -o $@  $<
 
 libdisastrOS.a: $(OBJS) $(HEADERS) 
 	$(AR) -rcs $@ $^
 	$(RM) $(OBJS)
 
-disastrOS_test:		disastrOS_test.c $(LIBS)
+disastrOS_test: src/disastrOS_test.c $(LIBS)
 	$(CC) $(CCOPTS) -o $@ $^
 
 clean:
