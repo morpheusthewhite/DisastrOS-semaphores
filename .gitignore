@@ -1,0 +1,4 @@
+*.o
+libdisastrOS.a
+disastrOS_test
+
