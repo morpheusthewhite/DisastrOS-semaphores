@@ -190,7 +190,7 @@ void disastrOS_start(void (*f)(void*), void* f_args, char* logfile){
   syscall_numarg[DSOS_CALL_SEMCLOSE]      = 1;
 
   syscall_vector[DSOS_CALL_SEMPOST]      = internal_semPost;
-  syscall_numarg[DSOS_CALL_SEMPOST]      = 2;
+  syscall_numarg[DSOS_CALL_SEMPOST]      = 1;
 
   syscall_vector[DSOS_CALL_SEMWAIT]      = internal_semWait;
   syscall_numarg[DSOS_CALL_SEMWAIT]      = 1;
@@ -305,6 +305,21 @@ int disastrOS_destroyResource(int resource_id) {
   return disastrOS_syscall(DSOS_CALL_DESTROY_RESOURCE, resource_id);
 }
 
+int disastrOS_semOpen(int semnum) {
+  return disastrOS_syscall(DSOS_CALL_SEMOPEN, semnum);
+}
+
+int disastrOS_semClose(int semnum) {
+  return disastrOS_syscall(DSOS_CALL_SEMCLOSE, semnum);
+}
+
+int disastrOS_semWait(int semnum) {
+  return disastrOS_syscall(DSOS_CALL_SEMWAIT, semnum);
+}
+
+int disastrOS_semPost(int semnum) {
+  return disastrOS_syscall(DSOS_CALL_SEMPOST, semnum);
+}
 
 
 void disastrOS_printStatus(){
