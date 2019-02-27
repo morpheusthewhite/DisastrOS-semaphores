@@ -61,6 +61,17 @@ SemDescriptor*  SemDescriptorList_byFd(ListHead* l, int fd){
   return 0;
 }
 
+SemDescriptor*  SemDescriptorList_bySemnum(ListHead* l, int semnum){
+  ListItem* aux=l->first;
+  while(aux){
+    SemDescriptor* d=(SemDescriptor*)aux;
+    if (d->semaphore->id==semnum)
+      return d;
+    aux=aux->next;
+  }
+  return 0;
+}
+
 SemDescriptorPtr* SemDescriptorPtr_alloc(SemDescriptor* descriptor) {
   SemDescriptorPtr* d=PoolAllocator_getBlock(&_sem_descriptor_ptr_allocator);
   if (!d)

@@ -30,6 +30,11 @@ void childFunction(void* args){
     printf("PID: %d, iterate %d\n", disastrOS_getpid(), i);
     disastrOS_sleep((20-disastrOS_getpid())*5);
   }
+
+  // closing open semaphores
+  disastrOS_semClose(0);
+  disastrOS_semClose(disastrOS_getpid());
+
   disastrOS_exit(disastrOS_getpid()+1);
 }
 
