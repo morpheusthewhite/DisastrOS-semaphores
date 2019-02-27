@@ -22,6 +22,10 @@ void childFunction(void* args){
   printf("fd=%d\n", fd);
   printf("PID: %d, terminating\n", disastrOS_getpid());
 
+  // checking if sem_open works correctly
+  disastrOS_semOpen(0);
+  disastrOS_semOpen(disastrOS_getpid());
+
   for (int i=0; i<(disastrOS_getpid()+1); ++i){
     printf("PID: %d, iterate %d\n", disastrOS_getpid(), i);
     disastrOS_sleep((20-disastrOS_getpid())*5);

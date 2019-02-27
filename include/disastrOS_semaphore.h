@@ -14,7 +14,7 @@ typedef struct {
 
 void Semaphore_init();
 
-Semaphore* Semaphore_alloc(int id, int type);
+Semaphore* Semaphore_alloc(int id, int count);
 int Semaphore_free(Semaphore* semaphore);
 
 typedef ListHead SemaphoreList;
