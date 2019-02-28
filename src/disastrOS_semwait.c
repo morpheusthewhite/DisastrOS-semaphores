@@ -39,5 +39,6 @@ void internal_semWait(){
     running=next_running;
   }
 
+  running->syscall_retvalue = 0;
   return;
 }

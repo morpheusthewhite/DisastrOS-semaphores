@@ -42,5 +42,6 @@ void internal_semPost(){
     List_insert(&ready_list, ready_list.first, (ListItem*) next_running_PCB);
   }
 
+  running->syscall_retvalue = 0;
   return;
 }
