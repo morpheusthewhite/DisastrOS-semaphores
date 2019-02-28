@@ -17,7 +17,7 @@ void internal_semOpen(){
   if(semnum < 0){
     // invalid semnum
     disastrOS_debug("Requested semaphore with invalid id");
-    running->syscall_retvalue = DSOS_ESEMOPEN;
+    running->syscall_retvalue = DSOS_ESEMNEG;
     return;
   }
 

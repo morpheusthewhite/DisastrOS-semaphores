@@ -27,7 +27,7 @@ void internal_semClose(){
   // checks if the given file descriptor exists for the running process
   if (! des){
     disastrOS_debug("No semaphore with the given fd\n");
-    running->syscall_retvalue=DSOS_ESEMCLOSE;
+    running->syscall_retvalue=DSOS_ENOSEM;
     return;
   }
   disastrOS_debug("Removing semaphore with the given fd\n");
