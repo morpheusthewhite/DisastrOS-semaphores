@@ -22,13 +22,26 @@ void childFunction(void* args){
   printf("fd=%d\n", fd);
   printf("PID: %d, terminating\n", disastrOS_getpid());
 
-  // checking if sem_open works correctly
+  // opening the needed semaphores
   disastrOS_semOpen(0);
   disastrOS_semOpen(disastrOS_getpid());
 
   for (int i=0; i<(disastrOS_getpid()+1); ++i){
     printf("PID: %d, iterate %d\n", disastrOS_getpid(), i);
     disastrOS_sleep((20-disastrOS_getpid())*5);
+
+    // waiting on open semaphores
+    disastrOS_semWait(0);
+    disastrOS_semWait(disastrOS_getpid());
+
+    // supposed critical section
+    printf("Process %d is doing critical stuff!\n", disastrOS_getpid());
+    disastrOS_sleep(disastrOS_getpid()*2);
+
+    // posting after exiting from critical section
+    disastrOS_semPost(disastrOS_getpid());
+    disastrOS_semPost(0);
+
   }
 
   // closing open semaphores
