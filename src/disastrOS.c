@@ -312,15 +312,15 @@ int disastrOS_semOpen(int semnum) {
 }
 
 int disastrOS_semClose(int semfd) {
-  return disastrOS_syscall(DSOS_CALL_SEMCLOSE, semnum);
+  return disastrOS_syscall(DSOS_CALL_SEMCLOSE, semfd);
 }
 
 int disastrOS_semWait(int semfd) {
-  return disastrOS_syscall(DSOS_CALL_SEMWAIT, semnum);
+  return disastrOS_syscall(DSOS_CALL_SEMWAIT, semfd);
 }
 
 int disastrOS_semPost(int semfd) {
-  return disastrOS_syscall(DSOS_CALL_SEMPOST, semnum);
+  return disastrOS_syscall(DSOS_CALL_SEMPOST, semfd);
 }
 
 
