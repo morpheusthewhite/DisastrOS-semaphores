@@ -7,10 +7,10 @@
 #include "disastrOS_semdescriptor.h"
 
 void internal_semWait(){
-  // retrieves semaphore number from syscall arguments
-  int semnum = running->syscall_args[0];
+  // retrieves semaphore fd from syscall arguments
+  int semfd = running->syscall_args[0];
 
-  SemDescriptor* des=SemDescriptorList_bySemnum(&running->sem_descriptors, semnum);
+  SemDescriptor* des=SemDescriptorList_byFd(&running->sem_descriptors, semfd);
   // checks if the given file descriptor exists for the running process
   if (! des){
     disastrOS_debug("No open semaphore with the given fd\n");

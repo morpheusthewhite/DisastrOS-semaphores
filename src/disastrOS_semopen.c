@@ -9,7 +9,7 @@
 // creates a semaphore in the system, having num semnum
 // the semaphore is accessible throughuot the entire system
 // by its id.
-// on success, the function call returns semnum (>=0);
+// on success, the function call returns the fd (>=0);
 // in failure the function returns an error code <0
 void internal_semOpen(){
   int semnum = running->syscall_args[0];
@@ -65,6 +65,6 @@ void internal_semOpen(){
   des->ptr=descptr;
   List_insert(&sem->descriptors, sem->descriptors.last, (ListItem*) descptr);
 
-  running->syscall_retvalue = semnum;
+  running->syscall_retvalue = des->fd;
   return;
 }

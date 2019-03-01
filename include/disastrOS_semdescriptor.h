@@ -24,7 +24,6 @@ void SemDescriptor_init();
 SemDescriptor* SemDescriptor_alloc(int fd, Semaphore* res, PCB* pcb);
 int SemDescriptor_free(SemDescriptor* d);
 SemDescriptor*  SemDescriptorList_byFd(ListHead* l, int fd);
-SemDescriptor*  SemDescriptorList_bySemnum(ListHead* l, int semnum);
 void SemDescriptorList_print(ListHead* l);
 
 SemDescriptorPtr* SemDescriptorPtr_alloc(SemDescriptor* descriptor);

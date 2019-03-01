@@ -21,9 +21,9 @@ void semUnlink(Semaphore* sem){
 // returns 0 on success
 // returns an error code if the semaphore is not owned by the application
 void internal_semClose(){
-  int semnum=running->syscall_args[0];
+  int semfd=running->syscall_args[0];
 
-  SemDescriptor* des=SemDescriptorList_bySemnum(&running->sem_descriptors, semnum);
+  SemDescriptor* des=SemDescriptorList_byFd(&running->sem_descriptors, semfd);
   // checks if the given file descriptor exists for the running process
   if (! des){
     disastrOS_debug("No semaphore with the given fd\n");
@@ -39,7 +39,7 @@ void internal_semClose(){
   // retrieving the semaphore open with the given descriptor
   Semaphore* sem=des->semaphore;
 
-  // removes the descriptor pointer from the resource list
+  // removes the descriptor pointer from the semaphore list
   SemDescriptorPtr* desptr=(SemDescriptorPtr*) List_detach(&sem->descriptors, (ListItem*)(des->ptr));
 
   // desptr should not be null (the descriptor is in the semaphore list)

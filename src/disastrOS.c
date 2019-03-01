@@ -311,15 +311,15 @@ int disastrOS_semOpen(int semnum) {
   return disastrOS_syscall(DSOS_CALL_SEMOPEN, semnum);
 }
 
-int disastrOS_semClose(int semnum) {
+int disastrOS_semClose(int semfd) {
   return disastrOS_syscall(DSOS_CALL_SEMCLOSE, semnum);
 }
 
-int disastrOS_semWait(int semnum) {
+int disastrOS_semWait(int semfd) {
   return disastrOS_syscall(DSOS_CALL_SEMWAIT, semnum);
 }
 
-int disastrOS_semPost(int semnum) {
+int disastrOS_semPost(int semfd) {
   return disastrOS_syscall(DSOS_CALL_SEMPOST, semnum);
 }
 
