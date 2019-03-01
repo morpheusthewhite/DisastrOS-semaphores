@@ -35,8 +35,9 @@ void childFunction(void* args){
     disastrOS_semWait(sem2);
 
     // supposed critical section
-    printf("Process %d is doing critical stuff!\n", disastrOS_getpid());
+    printf("Process %d is entering some critical section!\n", disastrOS_getpid());
     disastrOS_sleep(disastrOS_getpid()*2);
+    printf("Process %d is exiting from critical section\n", disastrOS_getpid());
 
     // posting after exiting from critical section
     disastrOS_semPost(sem2);
