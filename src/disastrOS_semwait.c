@@ -33,6 +33,7 @@ void internal_semWait(){
     // allocates a semeaphore pointer to be used in the waiting queu
     SemDescriptorPtr* descptr = SemDescriptorPtr_alloc(des);
     List_insert(&sem->waiting_descriptors, sem->waiting_descriptors.last, (ListItem*) descptr);
+    List_insert(&waiting_list, waiting_list.last, (ListItem*) des->pcb);
 
     // pick the next
     PCB* next_running = (PCB*) List_detach(&ready_list, ready_list.first);
