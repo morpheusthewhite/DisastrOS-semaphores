@@ -14,6 +14,12 @@
 void internal_semOpen(){
   int semnum = running->syscall_args[0];
 
+  if(running->sem_descriptors.size > MAX_NUM_SEMDESCRIPTORS_PER_PROCESS){
+    disastrOS_debug("Semaphore allocation failed: no more descriptors available for the process\n");
+    running->syscall_retvalue = DSOS_ESEMOPEN;
+    return;
+  }
+
   if(semnum < 0){
     // invalid semnum
     disastrOS_debug("Requested semaphore with invalid id");

@@ -1,10 +1,6 @@
 # disastrOS-semaphores
 An implementation of binary semaphores for disastrOS, for the course of Operative Systems held by Giorgio Grisetti in 2018-19.
 
-
-[TOC]
-
-
 ## Instructions
 
 To compile just run
