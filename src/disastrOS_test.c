@@ -3,6 +3,7 @@
 #include <poll.h>
 
 #include "disastrOS.h"
+#include "disastrOS_semtest.h"
 
 // we need this to handle the sleep state
 void sleeperFunction(void* args){
@@ -56,8 +57,13 @@ void childFunction(void* args){
 void initFunction(void* args) {
   disastrOS_printStatus();
   printf("hello, I am init and I just started\n");
+  int retval;
+
+  // launch of a process to test semaphores
+  disastrOS_spawn(semTestFunction, 0);
+  disastrOS_wait(0, &retval);
+
   disastrOS_spawn(sleeperFunction, 0);
-  
 
   printf("I feel like to spawn 10 nice threads\n");
   int alive_children=0;
@@ -73,7 +79,6 @@ void initFunction(void* args) {
   }
 
   disastrOS_printStatus();
-  int retval;
   int pid;
   while(alive_children>0 && (pid=disastrOS_wait(0, &retval))>=0){ 
     disastrOS_printStatus();
