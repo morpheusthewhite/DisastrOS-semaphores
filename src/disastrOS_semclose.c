@@ -6,8 +6,11 @@
 #include "disastrOS_semaphore.h"
 #include "disastrOS_semdescriptor.h"
 
+// function automatically called by the semClose whenever a semaphore has been closed and
+// no other process uses it
 void semUnlink(Semaphore* sem){
   sem=(Semaphore*) List_detach(&semaphores_list, (ListItem*) sem);
+
   // the semaphore should be in the semaphore list, i. e. sem is not null
   assert(sem);
   // freeing memory

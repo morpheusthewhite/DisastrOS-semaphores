@@ -6,11 +6,11 @@
 #include "disastrOS_semaphore.h"
 #include "disastrOS_semdescriptor.h"
 
-// creates a semaphore in the system, having num semnum
+// creates a semaphore in the system, having id semnum
 // the semaphore is accessible throughuot the entire system
 // by its id.
 // on success, the function call returns the fd (>=0);
-// in failure the function returns an error code <0
+// in failure the function returns an error code (<0)
 void internal_semOpen(){
   int semnum = running->syscall_args[0];
 
