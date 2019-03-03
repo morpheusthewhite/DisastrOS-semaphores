@@ -21,7 +21,6 @@ void childFunction(void* args){
   int mode=0;
   int fd=disastrOS_openResource(disastrOS_getpid(),type,mode);
   printf("fd=%d\n", fd);
-  printf("PID: %d, terminating\n", disastrOS_getpid());
 
   // opening the needed semaphores
   int sem1 = disastrOS_semOpen(0);
@@ -50,6 +49,7 @@ void childFunction(void* args){
   disastrOS_semClose(sem1);
   disastrOS_semClose(sem2);
 
+  printf("PID: %d, terminating\n", disastrOS_getpid());
   disastrOS_exit(disastrOS_getpid()+1);
 }
 

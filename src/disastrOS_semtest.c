@@ -1,6 +1,5 @@
 #include "disastrOS.h"
-
-#define SEM_TEST 10
+#include "disastrOS_semtest.h"
 
 // evil tests for the semaphores
 void semTestFunction(){
@@ -128,6 +127,6 @@ void semTestFunction(){
   disastrOS_printStatus();
   printf("Semaphore tests completed successfully!\n");
 
-  disastrOS_exit(disastrOS_getpid()+1);
+  disastrOS_exit(0);
 }
 

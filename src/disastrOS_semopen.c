@@ -61,9 +61,9 @@ void internal_semOpen(){
 
   disastrOS_debug("Descriptor correctly created\n");
 
-  running->last_sem_fd++; // increments the count of open semaphores
+  running->last_sem_fd++; // increments the count of opened semaphores for the process
 
-  // adds the open semaphore among the ones of the current process
+  // adds the opened semaphore among the ones of the current process
   SemDescriptorPtr* descptr = SemDescriptorPtr_alloc(des);
   List_insert(&running->sem_descriptors, running->sem_descriptors.last, (ListItem*) des);
 

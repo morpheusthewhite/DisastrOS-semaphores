@@ -25,6 +25,7 @@ void internal_semWait(){
 
   // decrements semaphore value
   sem->count--;
+  running->syscall_retvalue = 0;
 
   // checks if the process should be put in the waiting queue
   if(sem->count < 0){
@@ -40,6 +41,5 @@ void internal_semWait(){
     running=next_running;
   }
 
-  running->syscall_retvalue = 0;
   return;
 }

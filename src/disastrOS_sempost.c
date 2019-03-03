@@ -31,18 +31,17 @@ void internal_semPost(){
   if(sem->count <= 0){
     // put one process in the ready queue
     SemDescriptorPtr* next_running_sem_desc_ptr = (SemDescriptorPtr*) List_detach(&sem->waiting_descriptors, sem->waiting_descriptors.first);
+    // retrieves the PCB of the process
     PCB* next_running_PCB = next_running_sem_desc_ptr->descriptor->pcb;
 
     // removing the process from the system waiting list
     assert(List_detach(&waiting_list, (ListItem*)next_running_PCB));
-
-    // retrieves the PCB of the process, setting its status as ready and putting it in the ready queue
     next_running_PCB->status=Ready;
 
     // freeing allocated semaphore pointer
     SemDescriptorPtr_free(next_running_sem_desc_ptr);
 
-    List_insert(&ready_list, ready_list.first, (ListItem*) next_running_PCB);
+    List_insert(&ready_list, ready_list.last, (ListItem*) next_running_PCB);
   }
 
   running->syscall_retvalue = 0;
